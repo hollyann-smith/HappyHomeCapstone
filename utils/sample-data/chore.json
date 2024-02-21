@@ -1,0 +1,32 @@
+{
+  "-MiBsBKGWFEU-yluJkL-": {
+    "member_id": "-MiBt86VzkC-EGmJnxjm",
+    "firebaseKey": "-MiBsBKGWFEU-yluJkL-",
+    "image": "https://images-na.ssl-images-amazon.com/images/I/91+NBrXG-PL.jpg",
+    "description": "",
+    "isComplete": false,
+    "name": "A Promised Land",
+    "uid": "",
+    "category_id": ""
+  },
+  "-MiBsknNSQ6aBG1-2lQS": {
+    "member_id": "-MiBsfuTafbEQ7eAULxV",
+    "firebaseKey": "-MiBsknNSQ6aBG1-2lQS",
+    "image": "https://images-na.ssl-images-amazon.com/images/I/A1agLFsWkOL.jpg",
+    "description": "",
+    "isComplete": true,
+    "name": "Children of Blood and Bone",
+    "uid": "",
+    "category_id": ""
+  },
+  "-MiBuCve4-r_H-RLUOh2": {
+    "member_id": "-MiBtwf1BwN9pGavQeR3",
+    "firebaseKey": "-MiBuCve4-r_H-RLUOh2",
+    "image": "https://images-na.ssl-images-amazon.com/images/I/51529Lfc2ML.jpg",
+    "description": "",
+    "isComplete": false,
+    "name": "A People's History of the United States of America",
+    "uid": "",
+    "category_id": ""
+  }
+}
