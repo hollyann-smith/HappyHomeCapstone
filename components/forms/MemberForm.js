@@ -4,8 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/router';
 import { FloatingLabel } from 'react-bootstrap';
-import { createMember, updateMember } from '../api/memberData';
-import { useAuth } from '../utils/context/authContext';
+import { createMember, updateMember } from '../../api/memberData';
+import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   name: '',
@@ -13,7 +13,7 @@ const initialState = {
   firebaseKey: '',
 };
 
-function RegisterForm({ obj }) {
+function MemberForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const { user } = useAuth();
   const router = useRouter();
@@ -34,13 +34,13 @@ function RegisterForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       createMember(formInput)
-        .then(() => router.push('/home'));
+        .then(() => router.push('/member'));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createMember(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateMember(patchPayload).then(() => {
-          router.push('/home');
+          router.push('/member');
         });
       });
     }
@@ -66,7 +66,7 @@ function RegisterForm({ obj }) {
   );
 }
 
-RegisterForm.propTypes = {
+MemberForm.propTypes = {
   obj: PropTypes.shape({
     name: PropTypes.string,
     image: PropTypes.string,
@@ -74,7 +74,7 @@ RegisterForm.propTypes = {
   }),
 };
 
-RegisterForm.defaultProps = {
+MemberForm.defaultProps = {
   obj: initialState,
 };
-export default RegisterForm;
+export default MemberForm;
