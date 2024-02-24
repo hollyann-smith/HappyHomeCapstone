@@ -1,10 +1,7 @@
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
-import { useAuth } from '../utils/context/authContext';
 
 function Home() {
-  const { user } = useAuth();
-
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
@@ -15,10 +12,14 @@ function Home() {
         margin: '0 auto',
       }}
     >
-      <h1>Hello , {user.displayName} Welcome to Happy Home! </h1>
+      <h1>Hello , Welcome to Happy Home! </h1>
       <p>Are you new here?</p>
       <Link href="/register" passHref>
         <Button>Start my Team</Button>
+      </Link>
+      <p>Have you been here before?</p>
+      <Link href="/home" passHref>
+        <Button>Not my first time!</Button>
       </Link>
     </div>
   );

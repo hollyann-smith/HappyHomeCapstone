@@ -15,13 +15,13 @@ export default function MemberCard({ memberObj, onUpdate }) {
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={memberObj?.image} alt={memberObj?.name} style={{ height: '400px' }} />
+      <Card.Img class="card-img" variant="top" src={memberObj?.image} alt={memberObj?.name} style={{ height: '200px' }} />
       <Card.Body>
         <Card.Title>{memberObj?.name}</Card.Title>
         <Link href={`/member/edit/${memberObj.firebaseKey}`} passHref>
-          <Button variant="info">EDIT</Button>
+          <Button id="button" variant="info">EDIT</Button>
         </Link>
-        <Button variant="danger" onClick={deleteThismember} className="m-2">
+        <Button id="button" variant="danger" onClick={deleteThismember} className="m-2" style={{ height: '20px' }}>
           DELETE
         </Button>
       </Card.Body>
