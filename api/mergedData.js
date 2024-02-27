@@ -3,10 +3,12 @@ import { deleteSingleMember, getMemberChores, getSingleMember } from './memberDa
 
 const viewChoreDetails = (choreFirebaseKey) => new Promise((resolve, reject) => {
   getSingleChore(choreFirebaseKey)
-    .then((choreObj) => {
-      getSingleMember(choreObj.member_id)
-        .then((memberObj) => {
-          resolve({ memberObj, ...choreObj });
+    .then((choreObject) => {
+      getSingleMember(choreObject?.member_id)
+        .then((memberObject) => {
+          resolve({ choreObject, ...memberObject });
+          console.warn(choreObject, 'choreobject');
+          console.warn(memberObject, 'memberobject');
         });
     }).catch((error) => reject(error));
 });
@@ -29,4 +31,6 @@ const deletememberchores = (memberId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export { viewChoreDetails, viewMemberDetails, deletememberchores };
+export {
+  viewChoreDetails, viewMemberDetails, deletememberchores,
+};

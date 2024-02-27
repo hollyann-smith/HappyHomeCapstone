@@ -10,7 +10,6 @@ function Chore() {
 
   const { user } = useAuth();
 
-  console.warn('chores home', chores);
   // console.warn(getchores(user.uid), 'getchores');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
