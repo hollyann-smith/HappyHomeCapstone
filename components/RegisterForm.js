@@ -11,6 +11,7 @@ const initialState = {
   name: '',
   image: '',
   firebaseKey: '',
+  isAdmin: true,
 };
 
 function RegisterForm({ obj }) {
@@ -71,6 +72,8 @@ RegisterForm.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string,
     firebaseKey: PropTypes.string,
+    uid: PropTypes.string,
+    isAdmin: PropTypes.bool,
   }),
 };
 
