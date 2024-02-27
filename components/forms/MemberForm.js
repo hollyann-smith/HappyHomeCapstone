@@ -48,7 +48,7 @@ function MemberForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Edit your admin info..' : 'What is your name?'} </h2>
+      <h2 className="text-white mt-5">{obj.firebaseKey ? 'UPDATE' : 'ADD'} </h2>
       {/* FIRST NAME INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="First Name" className="mb-3">
         <Form.Control
@@ -56,6 +56,17 @@ function MemberForm({ obj }) {
           placeholder="Enter Name"
           name="name"
           value={formInput.name}
+          onChange={handleChange}
+          required
+        />
+      </FloatingLabel>
+      {/* IMAGE INPUT  */}
+      <FloatingLabel controlId="floatingInput2" label="Member Image" className="mb-3">
+        <Form.Control
+          type="url"
+          placeholder="Enter an image url"
+          name="image"
+          value={formInput.image}
           onChange={handleChange}
           required
         />
