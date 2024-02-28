@@ -10,9 +10,6 @@ function Chore() {
 
   const { user } = useAuth();
 
-  console.warn('chores home', chores);
-  // console.warn(getchores(user.uid), 'getchores');
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getAllThechores = () => {
     getChores(user.uid).then(setChores);
@@ -20,7 +17,7 @@ function Chore() {
 
   useEffect(() => {
     getAllThechores();
-  }, [getAllThechores]);
+  }, []);
 
   return (
     <div className="text-center my-4">

@@ -20,7 +20,7 @@ function RegisterForm({ obj }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (obj.firebaseKey) setFormInput(obj);
+    if (obj.uid) setFormInput(obj);
   }, [obj]);
 
   const handleChange = (e) => {
@@ -33,8 +33,8 @@ function RegisterForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
-      createMember(formInput)
+    if (obj.uid) {
+      updateMember(formInput)
         .then(() => router.push('/home'));
     } else {
       const payload = { ...formInput, uid: user.uid };
@@ -49,7 +49,7 @@ function RegisterForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Edit your admin info..' : 'What is your name?'} </h2>
+      <h2 className="text-white mt-5">{obj.uid ? 'Edit your admin info..' : 'What is your name?'} </h2>
       {/* FIRST NAME INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="First Name" className="mb-3">
         <Form.Control
@@ -62,7 +62,7 @@ function RegisterForm({ obj }) {
         />
       </FloatingLabel>
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'UPDATE' : 'ADD'} </Button>
+      <Button type="submit">{obj.uid ? 'UPDATE' : 'ADD'} </Button>
     </Form>
   );
 }

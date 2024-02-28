@@ -8,31 +8,27 @@ import { deleteSingleChore } from '../api/choreData';
 // import { viewChoreDetails } from '../api/mergedData';
 
 export default function ChoreCard({ choreObj, onUpdate }) {
+  // const router = useRouter();
+  // const { firebaseKey } = router.query;
+
   const deleteThischore = () => {
     if (window.confirm(`Remove ${choreObj.name}?`)) {
       deleteSingleChore(choreObj.firebaseKey).then(() => onUpdate());
     }
   };
-  // console.warn(choreObj, 'choreObj');
-
-  // const [assignedMember, setAssignedMember] = useState({});
-  // const router = useRouter();
-  // const { firebaseKey } = router.query;
-
-  // console.warn(assignedMember, 'assignedMember');
-  // useEffect(() => {
-  //   viewChoreDetails(firebaseKey).then(setAssignedMember);
-  // }, [firebaseKey]);
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
       <Card.Title>{choreObj?.name}</Card.Title>
-      <Card.Img class="card-img" variant="top" src={choreObj?.image} alt={choreObj?.name} style={{ height: '200px' }} />
+      <Card.Img className="card-img" variant="top" src={choreObj?.image} alt={choreObj?.name} style={{ height: '200px' }} />
       <Card.Body>
-        {/* <Card.Title>{choreObj?.name}</Card.Title> */}
+        <Card.Title>{choreObj?.name}</Card.Title>
         <p className="card-text bold">{choreObj.isComplete && <span>COMPLETED!<br /></span> }</p>
         <Link href={`/chore/edit/${choreObj.firebaseKey}`} passHref>
           <Button id="button" variant="info">EDIT</Button>
+        </Link>
+        <Link href={`/chore/${choreObj.firebaseKey}`} passHref>
+          <Button id="button" variant="info">VIEW</Button>
         </Link>
         <Button id="button" variant="danger" onClick={deleteThischore} className="m-2" style={{ height: '20px' }}>
           DELETE
@@ -49,6 +45,8 @@ ChoreCard.propTypes = {
     firebaseKey: PropTypes.string,
     isComplete: PropTypes.bool,
     member_id: PropTypes.string,
+    memberData: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+
 };

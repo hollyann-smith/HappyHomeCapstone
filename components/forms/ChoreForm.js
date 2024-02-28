@@ -54,53 +54,56 @@ function ChoreForm({ obj }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'UPDATE' : 'ADD'} </h2>
-      {/* FIRST NAME INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="Chore Name" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter Chore"
-          name="name"
-          value={formInput.name}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-      {/* DESCRIPTION INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="Description" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter Description"
-          name="description"
-          value={formInput.description}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-      {/* IMAGE INPUT  */}
-      <FloatingLabel controlId="floatingInput2" label="chore Image" className="mb-3">
-        <Form.Control
-          type="url"
-          placeholder="Enter an image url"
-          name="image"
-          value={formInput.image}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-      {/* member SELECT  */}
-      <FloatingLabel controlId="floatingSelect" label="member">
-        <Form.Select
-          aria-label="member"
-          name="member_id"
-          onChange={handleChange}
-          className="mb-3"
-          value={formInput.member_id}
-          required
-        >
-          <option value="">Select an member</option>
-          {
+    <div className="container">
+      <div className="form_area">
+        <Form onSubmit={handleSubmit}>
+          <h2 className="text-white mt-5">{obj.firebaseKey ? 'UPDATE' : 'ADD'} </h2>
+          {/* FIRST NAME INPUT  */}
+          <FloatingLabel controlId="floatingInput1" label="Chore Name" className="mb-3">
+            <Form.Control
+              type="text"
+              placeholder="Enter Chore"
+              name="name"
+              value={formInput.name}
+              onChange={handleChange}
+              required
+            />
+          </FloatingLabel>
+          {/* DESCRIPTION INPUT  */}
+          <FloatingLabel controlId="floatingInput1" label="Description" className="mb-3">
+            <Form.Control
+              type="text"
+              placeholder="Enter Description"
+              name="description"
+              value={formInput.description}
+              onChange={handleChange}
+              required
+            />
+          </FloatingLabel>
+          {/* IMAGE INPUT  */}
+          <FloatingLabel controlId="floatingInput2" label="chore Image" className="mb-3">
+            <Form.Control
+              type="url"
+              placeholder="Enter an image url"
+              name="image"
+              value={formInput.image}
+              onChange={handleChange}
+              required
+            />
+          </FloatingLabel>
+          {/* member SELECT  */}
+          <FloatingLabel controlId="floatingSelect" label="member">
+            <Form.Select
+              aria-label="member"
+              name="member_id"
+              onChange={handleChange}
+              className="mb-3"
+              value={formInput.member_id}
+              required
+            >
+              <option value="">Select an member</option>
+              <option>Unassigned</option>
+              {
             members.map((member) => (
               <option
                 key={member.firebaseKey}
@@ -110,27 +113,29 @@ function ChoreForm({ obj }) {
               </option>
             ))
           }
-        </Form.Select>
-      </FloatingLabel>
-      {/* complete  */}
-      <Form.Check
-        className="text-white mb-3"
-        type="switch"
-        id="isComplete"
-        name="isComplete"
-        label="complete?"
-        checked={formInput.isComplete}
-        value={formInput.isComplete}
-        onChange={(e) => {
-          setFormInput((prevState) => ({
-            ...prevState,
-            isComplete: e.target.checked,
-          }));
-        }}
-      />
-      {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'UPDATE' : 'ADD'} </Button>
-    </Form>
+            </Form.Select>
+          </FloatingLabel>
+          {/* complete  */}
+          <Form.Check
+            className="text-white mb-3"
+            type="switch"
+            id="isComplete"
+            name="isComplete"
+            label="complete?"
+            checked={formInput.isComplete}
+            value={formInput.isComplete}
+            onChange={(e) => {
+              setFormInput((prevState) => ({
+                ...prevState,
+                isComplete: e.target.checked,
+              }));
+            }}
+          />
+          {/* SUBMIT BUTTON  */}
+          <Button type="submit">{obj.firebaseKey ? 'UPDATE' : 'ADD'} </Button>
+        </Form>
+      </div>
+    </div>
   );
 }
 

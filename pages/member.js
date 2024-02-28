@@ -10,7 +10,7 @@ function Home() {
 
   const { user } = useAuth();
 
-  console.warn('members home', members);
+  // console.warn('members home', members);
   // console.warn(getmembers(user.uid), 'getmembers');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
