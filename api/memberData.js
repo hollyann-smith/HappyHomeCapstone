@@ -47,6 +47,19 @@ const getSingleMember = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET ADMIN
+const getAdminMember = (isAdmin) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/member/${isAdmin}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 // DELETE Member
 const deleteSingleMember = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/member/${firebaseKey}.json`, {
@@ -110,4 +123,5 @@ export {
   updateMember,
   favoriteMembers,
   getMemberChores,
+  getAdminMember,
 };

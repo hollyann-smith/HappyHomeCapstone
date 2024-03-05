@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/router';
 import { FloatingLabel } from 'react-bootstrap';
+import Link from 'next/link';
 import { createMember, updateMember } from '../api/memberData';
 import { useAuth } from '../utils/context/authContext';
 
@@ -11,7 +12,7 @@ const initialState = {
   name: '',
   image: '',
   firebaseKey: '',
-  isAdmin: true,
+  isAdmin: false,
 };
 
 function RegisterForm({ obj }) {
@@ -20,7 +21,7 @@ function RegisterForm({ obj }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (obj.uid) setFormInput(obj);
+    if (obj?.isAdmin) setFormInput(obj);
   }, [obj]);
 
   const handleChange = (e) => {
@@ -47,9 +48,17 @@ function RegisterForm({ obj }) {
     }
   };
 
+  const handleAdmin = (e) => {
+    e.preventDefault();
+    setFormInput((prevState) => ({
+      ...prevState,
+      isAdmin: true,
+    }));
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.uid ? 'Edit your admin info..' : 'What is your name?'} </h2>
+      <h2 className="text-white mt-5">{obj?.isAdmin ? 'Edit your admin info..' : 'What is your name?'} </h2>
       {/* FIRST NAME INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="First Name" className="mb-3">
         <Form.Control
@@ -62,7 +71,9 @@ function RegisterForm({ obj }) {
         />
       </FloatingLabel>
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.uid ? 'UPDATE' : 'ADD'} </Button>
+      <Link href="/startmyteam" passHref>
+        <Button type="submit" onSubmit={handleAdmin}>{obj?.isAdmin ? 'UPDATE' : 'ADD'} </Button>
+      </Link>
     </Form>
   );
 }
