@@ -3,12 +3,10 @@ import { deleteSingleMember, getMemberChores, getSingleMember } from './memberDa
 
 const viewChoreDetails = (choreFirebaseKey) => new Promise((resolve, reject) => {
   getSingleChore(choreFirebaseKey)
-    .then((choreObject) => {
-      getSingleMember(choreObject?.member_id)
-        .then((memberObject) => {
-          resolve({ choreObject, ...memberObject });
-          console.warn(choreObject, 'choreobject');
-          console.warn(memberObject, 'memberobject');
+    .then((choreObj) => {
+      getSingleMember(choreObj?.member_id)
+        .then((memberObj) => {
+          resolve({ memberObj, ...choreObj });
         });
     }).catch((error) => reject(error));
 });
@@ -22,7 +20,7 @@ const viewMemberDetails = (memberFirebaseKey) => new Promise((resolve, reject) =
 
 const deletememberchores = (memberId) => new Promise((resolve, reject) => {
   getMemberChores(memberId).then((choresArray) => {
-    console.warn(choresArray, 'member chores');
+    // console.warn(choresArray, 'member chores');
     const deleteChorePromises = choresArray.map((chore) => deleteSingleChore(chore.firebaseKey));
 
     Promise.all(deleteChorePromises).then(() => {
