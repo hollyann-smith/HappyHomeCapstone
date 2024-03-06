@@ -1,9 +1,10 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-const signIn = () => {
+const signIn = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider);
+  await firebase.auth().signInWithPopup(provider);
+  console.warn(provider, 'provider');
 };
 
 const signOut = () => {

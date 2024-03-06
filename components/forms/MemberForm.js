@@ -10,7 +10,7 @@ import { useAuth } from '../../utils/context/authContext';
 const initialState = {
   name: '',
   image: '',
-  firebaseKey: '',
+  isAdmin: false,
 };
 
 function MemberForm({ obj }) {
@@ -33,7 +33,7 @@ function MemberForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      createMember(formInput)
+      updateMember(formInput)
         .then(() => router.push('/member'));
     } else {
       const payload = { ...formInput, uid: user.uid };
@@ -82,6 +82,8 @@ MemberForm.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string,
     firebaseKey: PropTypes.string,
+    uid: PropTypes.string,
+    isAdmin: PropTypes.bool,
   }),
 };
 

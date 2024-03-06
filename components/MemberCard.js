@@ -11,13 +11,16 @@ export default function MemberCard({ memberObj, onUpdate }) {
       deleteSingleMember(memberObj.firebaseKey).then(() => onUpdate());
     }
   };
-  console.warn(memberObj, 'memberObj');
+  // console.warn(memberObj, 'memberObj');
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img class="card-img" variant="top" src={memberObj?.image} alt={memberObj?.name} style={{ height: '200px' }} />
+      <Card.Img className="card-img" variant="top" src={memberObj?.image} alt={memberObj?.name} style={{ height: '200px' }} />
       <Card.Body>
         <Card.Title>{memberObj?.name}</Card.Title>
+        <Link href={`/member/${memberObj.firebaseKey}`} passHref>
+          <Button id="button" variant="info">VIEW</Button>
+        </Link>
         <Link href={`/member/edit/${memberObj.firebaseKey}`} passHref>
           <Button id="button" variant="info">EDIT</Button>
         </Link>

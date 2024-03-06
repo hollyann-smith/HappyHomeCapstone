@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import Link from 'next/link';
 import { signIn } from '../utils/auth';
 
-function Signin() {
+function SigninPage() {
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
@@ -15,11 +16,13 @@ function Signin() {
     >
       <h1>Hi there!</h1>
       <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
-        Sign In
-      </Button>
+      <Link href="/" passHref>
+        <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
+          Sign In
+        </Button>
+      </Link>
     </div>
   );
 }
 
-export default Signin;
+export default SigninPage;

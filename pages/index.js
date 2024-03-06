@@ -15,11 +15,11 @@ function Home() {
       <h1>Hello , Welcome to Happy Home! </h1>
       <p>Are you new here?</p>
       <Link href="/register" passHref>
-        <Button>Start my Team</Button>
+        <Button id="button">Start my Team</Button>
       </Link>
       <p>Have you been here before?</p>
       <Link href="/home" passHref>
-        <Button>Not my first time!</Button>
+        <Button id="button">Not my first time!</Button>
       </Link>
     </div>
   );

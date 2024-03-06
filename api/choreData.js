@@ -2,8 +2,8 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getMembers = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/member.json?orderBy="uid"&equalTo="${uid}"`, {
+const getChores = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/chore.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -20,9 +20,9 @@ const getMembers = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// CREATE Member
-const createMember = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/member.json`, {
+// CREATE chore
+const createChore = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/chore.json`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -34,9 +34,9 @@ const createMember = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// GET SINGLE Member
-const getSingleMember = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/member/${firebaseKey}.json`, {
+// GET SINGLE chore
+const getSingleChore = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/chore/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -47,22 +47,9 @@ const getSingleMember = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// GET ADMIN
-const getAdminMember = (isAdmin) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/member/${isAdmin}.json`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
-    .catch(reject);
-});
-
-// DELETE Member
-const deleteSingleMember = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/member/${firebaseKey}.json`, {
+// DELETE chore
+const deleteSingleChore = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/chore/${firebaseKey}.json`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -73,9 +60,9 @@ const deleteSingleMember = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-//  UPDATE Member
-const updateMember = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/member/${payload.firebaseKey}.json`, {
+//  UPDATE chore
+const updateChore = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/chore/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -87,9 +74,9 @@ const updateMember = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// GET A SINGLE Member'S CHORES
-const getMemberChores = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/chore.json?orderBy="member_id"&equalTo="${firebaseKey}"`, {
+// GET A SINGLE chore'S CHORES
+const getChoreChores = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/chore.json?orderBy="chore_id"&equalTo="${firebaseKey}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -100,8 +87,8 @@ const getMemberChores = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const favoriteMembers = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/member.json?orderBy="uid"&equalTo="${uid}"`, {
+const favoriteChores = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/chore.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -116,12 +103,11 @@ const favoriteMembers = (uid) => new Promise((resolve, reject) => {
 });
 
 export {
-  getMembers,
-  createMember,
-  getSingleMember,
-  deleteSingleMember,
-  updateMember,
-  favoriteMembers,
-  getMemberChores,
-  getAdminMember,
+  getChores,
+  createChore,
+  getSingleChore,
+  deleteSingleChore,
+  updateChore,
+  favoriteChores,
+  getChoreChores,
 };
