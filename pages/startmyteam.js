@@ -23,14 +23,6 @@ export default function StartMyTeamForm() {
     }));
   };
 
-  // const handleNameChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setMemberName((prevState) => ([
-  //     ...prevState,
-  //     {
-  //       [name]: value,
-  //     }]));
-  // };
   const handleNameChange = (e) => {
     const { name, value } = e.target;
     setMemberName({
@@ -42,14 +34,10 @@ export default function StartMyTeamForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.warn(e, 'e');
-    // if (obj?.firebaseKey) {
-    //   updateMember(formInput)
-    //     .then(() => router.push('/member'));
-    // } else {
+
     const payload = [memberName, user.uid];
 
     Promise.all(payload).then(() => {
-      console.warn('vals', Object.values(memberName));
       Object.values(memberName).map((singleMember) => createMember({
 
         name: singleMember,

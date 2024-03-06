@@ -6,11 +6,9 @@ import { viewChoreDetails } from '../../api/mergedData';
 export default function ViewChore() {
   const [choreDetails, setChoreDetails] = useState({});
   const router = useRouter();
-  console.warn(choreDetails, 'choreDetails');
-  // TODO: grab firebaseKey from url
+
   const { firebaseKey } = router.query;
-  console.warn(choreDetails, 'choreDetails');
-  // TODO: make call to API layer to get the data
+
   useEffect(() => {
     viewChoreDetails(firebaseKey).then(setChoreDetails);
   }, [firebaseKey]);
