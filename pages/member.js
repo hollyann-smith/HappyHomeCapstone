@@ -1,4 +1,3 @@
-import { Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../utils/context/authContext';
@@ -9,9 +8,6 @@ function Home() {
   const [members, setMembers] = useState([]);
 
   const { user } = useAuth();
-
-  // console.warn('members home', members);
-  // console.warn(getmembers(user.uid), 'getmembers');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getAllTheMembers = () => {
@@ -26,7 +22,7 @@ function Home() {
   return (
     <div className="text-center my-4">
       <Link href="/member/new" passHref>
-        <Button id="button">Add New Member </Button>
+        <button className="btn-primary" type="button">Add New Member </button>
       </Link>
       <div className="d-flex flex-wrap">
         {members.map((member) => (
