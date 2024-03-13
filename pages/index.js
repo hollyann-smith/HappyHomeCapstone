@@ -14,7 +14,7 @@ function Home() {
     >
       <h1>Hello , Welcome to Happy Home! </h1>
       <p>Are you new here?</p>
-      <Link href="/register" passHref>
+      <Link href="/startmyteam" passHref>
         <Button id="button">Start my Team</Button>
       </Link>
       <p>Have you been here before?</p>

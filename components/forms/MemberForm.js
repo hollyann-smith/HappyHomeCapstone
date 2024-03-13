@@ -4,12 +4,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/router';
 import { FloatingLabel } from 'react-bootstrap';
-import { createMember, updateMember } from '../../api/memberData';
+import { createMember, deleteSingleMember, updateMember } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   name: '',
-  image: '',
+  image: 'https://www.drawing123.com/wp-content/uploads/2022/08/ket-qua-16.jpg',
   isAdmin: false,
 };
 
@@ -17,6 +17,14 @@ function MemberForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const { user } = useAuth();
   const router = useRouter();
+
+  const deleteThismember = () => {
+    if (window.confirm(`Remove ${obj?.name}?`)) {
+      deleteSingleMember(obj?.firebaseKey).then(() => {
+        router.push('/member');
+      });
+    }
+  };
 
   useEffect(() => {
     if (obj?.firebaseKey) setFormInput(obj);
@@ -34,7 +42,7 @@ function MemberForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateMember(formInput)
-        .then(() => router.push(`{/member/${obj?.firebaseKey}`));
+        .then(() => router.push('/member'));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createMember(payload).then(({ name }) => {
@@ -73,6 +81,7 @@ function MemberForm({ obj }) {
       </FloatingLabel>
       {/* SUBMIT BUTTON  */}
       <Button type="submit">{obj?.firebaseKey ? 'UPDATE' : 'ADD'} </Button>
+      {obj?.firebaseKey ? <button type="button" className="btn-danger" onClick={deleteThismember} style={{ height: '20px' }}>DELETE</button> : null}
     </Form>
   );
 }

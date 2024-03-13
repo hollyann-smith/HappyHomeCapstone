@@ -78,7 +78,7 @@ export default function StartMyTeamForm() {
   };
 
   return (
-    <><h2>How many members on your team?</h2>
+    <><h1>How many members on your team?</h1>
       <Form onSubmit={handleSubmit}>
         <FloatingLabel controlId="floatingSelect" label="">
           <Form.Select
@@ -96,6 +96,7 @@ export default function StartMyTeamForm() {
             ))}
           </Form.Select>
         </FloatingLabel>
+        <h2>Add your name as member 1!</h2>
         {formInput.memberCount > 0 && renderInputs()}
         <Button type="submit">Lets Go!</Button>
       </Form>

@@ -24,12 +24,11 @@ function Home() {
       <Link href="/member/new" passHref>
         <button className="btn-primary" type="button">Add New Member </button>
       </Link>
-      <div className="d-flex flex-wrap">
+      <div className="h-56 grid grid-cols-3 gap-4 content-normal">
         {members.map((member) => (
           <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getAllTheMembers} />
         ))}
       </div>
-
     </div>
   );
 }
