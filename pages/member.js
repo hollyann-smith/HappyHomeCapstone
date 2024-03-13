@@ -1,4 +1,3 @@
-import { Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../utils/context/authContext';
@@ -9,9 +8,6 @@ function Home() {
   const [members, setMembers] = useState([]);
 
   const { user } = useAuth();
-
-  // console.warn('members home', members);
-  // console.warn(getmembers(user.uid), 'getmembers');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getAllTheMembers = () => {
@@ -26,14 +22,13 @@ function Home() {
   return (
     <div className="text-center my-4">
       <Link href="/member/new" passHref>
-        <Button id="button">Add New Member </Button>
+        <button className="btn-primary" type="button">Add New Member </button>
       </Link>
-      <div className="d-flex flex-wrap">
+      <div className="h-56 grid grid-cols-3 gap-4 content-normal">
         {members.map((member) => (
           <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getAllTheMembers} />
         ))}
       </div>
-
     </div>
   );
 }

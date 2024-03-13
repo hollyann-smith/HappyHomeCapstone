@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-// import { useRouter } from 'next/router';
 import { deleteSingleChore } from '../api/choreData';
-// import { viewChoreDetails } from '../api/mergedData';
+import { getSingleMember } from '../api/memberData';
 
 export default function ChoreCard({ choreObj, onUpdate }) {
-  // const router = useRouter();
-  // const { firebaseKey } = router.query;
+  const [memberObj, setMemberObj] = useState({});
+
+  const getMemberNames = () => {
+    getSingleMember(choreObj.member_id).then(setMemberObj);
+  };
+
+  useEffect(() => {
+    getMemberNames();
+  }, []);
 
   const deleteThischore = () => {
     if (window.confirm(`Remove ${choreObj.name}?`)) {
@@ -19,7 +25,7 @@ export default function ChoreCard({ choreObj, onUpdate }) {
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Title>{choreObj?.name}</Card.Title>
+      <Card.Title>{memberObj?.name ? `${memberObj?.name}` : 'Unassigned' }</Card.Title>
       <Card.Img className="card-img" variant="top" src={choreObj?.image} alt={choreObj?.name} style={{ height: '200px' }} />
       <Card.Body>
         <Card.Title>{choreObj?.name}</Card.Title>

@@ -29,4 +29,6 @@ const deletememberchores = (memberId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export { viewChoreDetails, viewMemberDetails, deletememberchores };
+export {
+  viewChoreDetails, viewMemberDetails, deletememberchores,
+};

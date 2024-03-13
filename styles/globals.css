@@ -1,9 +1,12 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body {
   padding: 0;
-  margin: 0  0 0 150px;
+  margin: 50px  0 0 100px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -18,7 +21,7 @@ a {
 }
 
 body {
-  background-color:whitesmoke;
+  background-color:rgb(222, 193, 29);
   /* background-image: url("../public/photos/happyhomehand.png"); */
   background-repeat: no-repeat;
   background-size:cover;
@@ -56,140 +59,12 @@ body {
   margin: 50px;
 }
 
-/* Sidebar */
-.sidenav {
-  height: 100%; /* 100% Full-height */
-  width: 250px; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #00ffa0; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-  border-radius: 0 1rem 1rem 0;
-  border: 0.5vmin solid #05060f;
+
+@layer components {
+.btn-primary {
+  @apply disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center text-center px-2.5 py-1.5 border border-transparent text-sm font-medium rounded shadow-sm text-white bg-indigo-600 enabled:hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
 }
-
-/* The navigation menu links */
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
+.btn-danger {
+  @apply disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center text-center px-2.5 py-1.5 border border-transparent text-sm font-medium rounded shadow-sm text-white bg-red-600 enabled:hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500;
 }
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  color: #050505;
 }
-
-/* Position and style the close button (top right corner) */
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-  transition: margin-left .5s;
-  padding: 20px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-
-
-/* 
-CARD STYLE  */
-/*Neo Brutalism pricing card*/
-.card {
-  width: 190px;
-  background: #00ffa0;
-  padding: 1rem;
-  border-radius: 1rem;
-  border: 0.5vmin solid #05060f;
-  box-shadow: 0.4rem 0.4rem #05060f;
-  overflow: hidden;
-  color: black;
-}
-
-/*Card content*/
-.pricing-block-content {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.card-img {
-  background-color: #ffcaa6;
-  height: 40%;
-  width: 100%;
-  border-radius: 1rem;
-  transition: .3s ease;
- }
-
-
-/* BUTTON */
-#button {
-  background-color: white;
-  color: black;
-  border-radius: 10em;
-  font-size: 17px;
-  font-weight: 600;
-  padding: 1em 2em;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid black;
-  box-shadow: 0 0 0 0 black;
-  text-align: center;
-  height: 20px;
-}
-
-#button:hover {
-  transform: translateY(-4px) translateX(-2px);
-  box-shadow: 2px 5px 0 0 black;
-};
-
-#button:active {
-  transform: translateY(2px) translateX(1px);
-  box-shadow: 0 0 0 0 black;
-};
-
-/* BUTTON
-#buttonHome {
-  background-color: white;
-  color: black;
-  border-radius: 10em;
-  font-size: 17px;
-  font-weight: 600;
-  padding: 1em 2em;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid black;
-  box-shadow: 0 0 0 0 black;
-  text-align: center;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-#buttonHome:hover {
-  transform: translateY(-4px) translateX(-2px);
-  box-shadow: 2px 5px 0 0 black;
-};
-
-#buttonHome:active {
-  transform: translateY(2px) translateX(1px);
-  box-shadow: 0 0 0 0 black;
-};  */

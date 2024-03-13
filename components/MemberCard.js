@@ -1,34 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import { deleteSingleMember } from '../api/memberData';
 
-export default function MemberCard({ memberObj, onUpdate }) {
-  const deleteThismember = () => {
-    if (window.confirm(`Remove ${memberObj.name}?`)) {
-      deleteSingleMember(memberObj.firebaseKey).then(() => onUpdate());
-    }
-  };
-  // console.warn(memberObj, 'memberObj');
-
+export default function MemberCard({ memberObj }) {
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img className="card-img" variant="top" src={memberObj?.image} alt={memberObj?.name} style={{ height: '200px' }} />
-      <Card.Body>
-        <Card.Title>{memberObj?.name}</Card.Title>
-        <Link href={`/member/${memberObj.firebaseKey}`} passHref>
-          <Button id="button" variant="info">VIEW</Button>
-        </Link>
-        <Link href={`/member/edit/${memberObj.firebaseKey}`} passHref>
-          <Button id="button" variant="info">EDIT</Button>
-        </Link>
-        <Button id="button" variant="danger" onClick={deleteThismember} className="m-2" style={{ height: '20px' }}>
-          DELETE
-        </Button>
-      </Card.Body>
-    </Card>
+    <div className="flex justify-content-around">
+      <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-8">
+        <div className="px-6">
+          <Link href={`/member/${memberObj?.firebaseKey}`} passHref>
+            <img alt="..." src={memberObj?.image} className="shadow-lg rounded-full mx-auto max-w-120-px max-w-40" />
+          </Link>
+          <div className="pt-6 text-center">
+            <h5 className="text-xl font-bold text-blueGray-700">{memberObj?.name}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -38,5 +25,4 @@ MemberCard.propTypes = {
     name: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
 };

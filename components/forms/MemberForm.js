@@ -4,12 +4,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/router';
 import { FloatingLabel } from 'react-bootstrap';
-import { createMember, updateMember } from '../../api/memberData';
+import { createMember, deleteSingleMember, updateMember } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   name: '',
-  image: '',
+  image: 'https://www.drawing123.com/wp-content/uploads/2022/08/ket-qua-16.jpg',
   isAdmin: false,
 };
 
@@ -18,8 +18,16 @@ function MemberForm({ obj }) {
   const { user } = useAuth();
   const router = useRouter();
 
+  const deleteThismember = () => {
+    if (window.confirm(`Remove ${obj?.name}?`)) {
+      deleteSingleMember(obj?.firebaseKey).then(() => {
+        router.push('/member');
+      });
+    }
+  };
+
   useEffect(() => {
-    if (obj.firebaseKey) setFormInput(obj);
+    if (obj?.firebaseKey) setFormInput(obj);
   }, [obj]);
 
   const handleChange = (e) => {
@@ -48,7 +56,7 @@ function MemberForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'UPDATE' : 'ADD'} </h2>
+      <h2 className="text-white mt-5">{obj?.firebaseKey ? 'UPDATE' : 'ADD'} </h2>
       {/* FIRST NAME INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="First Name" className="mb-3">
         <Form.Control
@@ -72,7 +80,8 @@ function MemberForm({ obj }) {
         />
       </FloatingLabel>
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'UPDATE' : 'ADD'} </Button>
+      <Button type="submit">{obj?.firebaseKey ? 'UPDATE' : 'ADD'} </Button>
+      {obj?.firebaseKey ? <button type="button" className="btn-danger" onClick={deleteThismember} style={{ height: '20px' }}>DELETE</button> : null}
     </Form>
   );
 }
