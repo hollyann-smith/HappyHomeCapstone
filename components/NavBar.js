@@ -19,7 +19,7 @@ export default function NavBar() {
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-950 rounded-r-full flex justify-center">
           <div className="flex flex-col mb-5 justify-center">
             <Link href="/home" passHref>
-              <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white cursor-pointer mb-5">Happy Home</span>
+              <span className="self-center text-5xl font-semibold whitespace-nowrap dark:text-white cursor-pointer mb-5">Happy <br /> Home</span>
             </Link>
             <ul className="space-y-2 font-medium text-center">
               <li>
