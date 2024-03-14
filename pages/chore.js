@@ -1,4 +1,3 @@
-import { Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../utils/context/authContext';
@@ -22,7 +21,7 @@ function Chore() {
   return (
     <div className="text-center my-4">
       <Link href="/chore/new" passHref>
-        <Button id="button">Add New chore </Button>
+        <button className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-gray-800 text-gray-800 hover:border-gray-500 hover:text-gray-500 disabled:opacity-50 disabled:pointer-events-none mb-5" type="button">Add New chore </button>
       </Link>
       <div className="d-flex flex-wrap">
         {chores.map((chore) => (

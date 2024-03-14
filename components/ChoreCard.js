@@ -1,13 +1,13 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Menu, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
-import { Transition } from '@headlessui/react';
 import { deleteSingleChore } from '../api/choreData';
 import { getSingleMember } from '../api/memberData';
 
 export default function ChoreCard({ choreObj, onUpdate }) {
   const [memberObj, setMemberObj] = useState({});
-  const [isShowing, setIsShowing] = useState(false);
 
   const getMemberNames = () => {
     getSingleMember(choreObj.member_id).then(setMemberObj);
@@ -23,46 +23,72 @@ export default function ChoreCard({ choreObj, onUpdate }) {
     }
   };
 
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ');
+  }
   return (
-    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <div className="flex justify-end px-4 pt-4">
-        <button onClick={() => setIsShowing(!isShowing)} id="dropdownButton" data-dropdown-toggle="dropdown" className="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200  rounded-lg text-sm p-1.5" type="button">
-          <span className="sr-only">Open dropdown</span>
-          <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-          </svg>
-        </button>
-        <Transition
-          show={isShowing}
-          as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
-        >
-          <div id="dropdown" className="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-            <ul className="py-2" aria-labelledby="dropdownButton">
-              <li>
-                <Link href={`/chore/edit/${choreObj.firebaseKey}`} passHref>
-                  <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" type="button">Edit</button>
-                </Link>
-              </li>
-              <li>
-                <button className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" type="button" onClick={deleteThischore}>Delete</button>
-              </li>
-            </ul>
+    <div className="w-full max-w-xs bg-white border border-gray-200 rounded-full shadow dark:bg-gray-800 dark:border-gray-700 p-6 mx-2 my-2 place-content-center">
+      <div className="flex justify-end ">
+        <Menu as="div" className="relative inline-block text-left">
+          <div>
+            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+              <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+            </Menu.Button>
           </div>
-        </Transition>
+
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items className="absolute right-0 z-10 mt-2 w-26 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div className="py-1">
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link href={`/chore/edit/${choreObj.firebaseKey}`} passHref>
+                      <button
+                        type="submit"
+                        className={classNames(
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'block w-full px-4 py-2 text-start text-sm',
+                        )}
+                      >
+                        Edit
+                      </button>
+                    </Link>
+                  )}
+                </Menu.Item>
+                <form method="POST" action="#">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        onClick={deleteThischore}
+                        type="submit"
+                        className={classNames(
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'block w-full px-4 py-2 text-left text-sm',
+                        )}
+                      >
+                        Delete
+                      </button>
+                    )}
+                  </Menu.Item>
+                </form>
+              </div>
+            </Menu.Items>
+          </Transition>
+        </Menu>
       </div>
       <div className="flex flex-col items-center pb-10">
         <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={choreObj?.image} alt={choreObj?.name} />
         <h5 className="mb-1 text-xl font-medium text-gray-900">{choreObj.name}</h5>
         <span className="text-sm text-gray-500 dark:text-gray-400">{memberObj?.name ? `Assigned to: ${memberObj?.name}` : 'Unassigned'}</span>
-        <p>{choreObj?.description}</p>
-        <div className="flex mt-4 md:mt-6"><p>{choreObj.isComplete && <span>COMPLETED!<br /></span>}</p>
-        </div>
+        <div className="p-8">{choreObj?.description}</div>
+        <p>{choreObj.isComplete && <span>COMPLETED!<br /></span>}</p>
       </div>
     </div>
   );
