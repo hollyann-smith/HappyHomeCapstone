@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { deleteSingleChore } from '../api/choreData';
@@ -30,15 +29,17 @@ export default function ChoreCard({ choreObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{choreObj?.name}</Card.Title>
         <p className="card-text bold">{choreObj.isComplete && <span>COMPLETED!<br /></span> }</p>
-        <Link href={`/chore/edit/${choreObj.firebaseKey}`} passHref>
-          <Button id="button" variant="info">EDIT</Button>
-        </Link>
-        <Link href={`/chore/${choreObj.firebaseKey}`} passHref>
-          <Button id="button" variant="info">VIEW</Button>
-        </Link>
-        <Button id="button" variant="danger" onClick={deleteThischore} className="m-2" style={{ height: '20px' }}>
-          DELETE
-        </Button>
+        <div className="space-x-5 pt-2">
+          <Link href={`/chore/edit/${choreObj.firebaseKey}`} passHref>
+            <button className="btn-primary" type="button">{memberObj?.name ? 'EDIT' : 'ASSIGN' }</button>
+          </Link>
+          <Link href={`/chore/${choreObj.firebaseKey}`} passHref>
+            <button className="btn-primary" type="button">VIEW</button>
+          </Link>
+          <button type="button" className="btn-danger" onClick={deleteThischore}>
+            DELETE
+          </button>
+        </div>
       </Card.Body>
     </Card>
   );
