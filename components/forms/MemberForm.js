@@ -1,15 +1,12 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/router';
-import { FloatingLabel } from 'react-bootstrap';
 import { createMember, deleteSingleMember, updateMember } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   name: '',
-  image: 'https://www.drawing123.com/wp-content/uploads/2022/08/ket-qua-16.jpg',
+  image: 'https://static.vecteezy.com/system/resources/previews/021/407/309/original/person-with-sparkle-line-icon-vector.jpg',
   isAdmin: false,
 };
 
@@ -55,34 +52,46 @@ function MemberForm({ obj }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj?.firebaseKey ? 'UPDATE' : 'ADD'} </h2>
-      {/* FIRST NAME INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="First Name" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter Name"
-          name="name"
-          value={formInput.name}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-      {/* IMAGE INPUT  */}
-      <FloatingLabel controlId="floatingInput2" label="Member Image" className="mb-3">
-        <Form.Control
-          type="url"
-          placeholder="Enter an image url"
-          name="image"
-          value={formInput.image}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-      {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj?.firebaseKey ? 'UPDATE' : 'ADD'} </Button>
-      {obj?.firebaseKey ? <button type="button" className="btn-danger" onClick={deleteThismember} style={{ height: '20px' }}>DELETE</button> : null}
-    </Form>
+    <div className="bg-white relative items-center  px-5 py-12 mx-auto md:px-12 lg:px-20 max-w-lg rounded-3xl">
+      <div className="w-full max-w-md mx-auto md:max-w-sm md:px-0 md:w-96 sm:px-4">
+        <div className="space-y-4" onSubmit={handleSubmit}>
+          <h2 className="font-bold text-gray-600 text-center text-3xl mb-5">{obj.firebaseKey ? 'Edit' : 'Add'} Member</h2>
+          {/* FIRST NAME INPUT  */}
+          <div className="mt-4">
+            <label htmlFor="text" className="block text-sm font-medium text-gray-600">First Name: </label>
+            <input
+              type="text"
+              className="block w-full px-6 py-3 text-black bg-white border border-gray-200 rounded-full appearance-none placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+              placeholder="Enter Chore"
+              name="name"
+              value={formInput.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          {/* IMAGE INPUT  */}
+          <div className="mt-4">
+            <label htmlFor="image" className="block text-sm font-medium text-gray-600">Add an image:</label>
+            <input
+              id="image"
+              type="url"
+              className="block w-full px-6 py-3 mt-1 text-black bg-white border border-gray-200 rounded-full appearance-none placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+              placeholder="Enter an image url"
+              name="image"
+              value={formInput.image}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          {/* SUBMIT BUTTON  */}
+          <button type="submit" className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black" onClick={handleSubmit}>{obj?.firebaseKey ? 'UPDATE' : 'ADD'} </button>
+          <div className="flex justify-end">
+            {obj?.firebaseKey ? <button type="button" className="btn-danger" onClick={deleteThismember} style={{ height: '20px' }}>DELETE</button> : null}
+          </div>
+        </div>
+      </div>
+      <div />
+    </div>
   );
 }
 

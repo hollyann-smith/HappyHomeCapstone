@@ -6,11 +6,11 @@ import teamicon from '../public/photos/teamicon.jpeg';
 
 export default function Home() {
   return (
-    <div className="flex content-center mx-3 my-3">
+    <div className="flex flex-wrap grid-cols-2 gap-4 place-content-center content-center justify-center">
       <div className="relative bg-white border shadow-sm rounded-3xl w-76 h-96 dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7] max-w-md mx-3 my-3">
         <Link href="/member" className="text-lg font-bold text-gray-800" passHref>
           <Image
-            className="rounded-full w-76 h-96"
+            className="rounded-3xl"
             src={teamicon}
             width={500}
             height={500}
@@ -26,7 +26,7 @@ export default function Home() {
       <div className="relative bg-white border shadow-sm rounded-3xl w-76 h-96 dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7] max-w-md mx-3 my-3">
         <Link href="/chore" className="text-lg font-bold text-gray-800" passHref>
           <Image
-            className="rounded-full w-76 h-96"
+            className="rounded-3xl "
             src={cleaning}
             width={500}
             height={500}

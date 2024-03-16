@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import { FloatingLabel, Form } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useAuth } from '../utils/context/authContext';
@@ -42,7 +42,7 @@ export default function StartMyTeamForm() {
 
         name: singleMember,
 
-        image: 'https://www.clker.com/cliparts/G/l/1/N/c/8/black-and-white-straight-face.svg.med.png',
+        image: 'https://static.vecteezy.com/system/resources/previews/021/407/309/original/person-with-sparkle-line-icon-vector.jpg',
 
         uid: user.uid,
 
@@ -78,29 +78,34 @@ export default function StartMyTeamForm() {
   };
 
   return (
-    <><h1>How many members on your team?</h1>
-      <Form onSubmit={handleSubmit}>
-        <FloatingLabel controlId="floatingSelect" label="">
-          <Form.Select
-            aria-label="member"
-            name="memberCount"
-            onChange={handleChange}
-            className="mb-3"
-            value={formInput.memberCount}
-            required
-          >
-            {[...Array(11).keys()].map((num) => (
-              <option key={num} value={num}>
-                {num}
-              </option>
-            ))}
-          </Form.Select>
-        </FloatingLabel>
-        <h2>Add your name as member 1!</h2>
-        {formInput.memberCount > 0 && renderInputs()}
-        <Button type="submit">Lets Go!</Button>
-      </Form>
-    </>
+    <div className="bg-white relative items-center  px-5 py-12 mx-auto md:px-12 lg:px-20 max-w-lg rounded-3xl">
+      <div className="w-full max-w-md mx-auto md:max-w-sm md:px-0 md:w-96 sm:px-4">
+        <div className="space-y-4">
+          <h1 className="font-bold text-gray-600 text-center text-3xl mb-5">How many members on your team?</h1>
+          <Form onSubmit={handleSubmit}>
+            <FloatingLabel controlId="floatingSelect" label="">
+              <Form.Select
+                aria-label="member"
+                name="memberCount"
+                onChange={handleChange}
+                className="mb-3"
+                value={formInput.memberCount}
+                required
+              >
+                {[...Array(11).keys()].map((num) => (
+                  <option key={num} value={num}>
+                    {num}
+                  </option>
+                ))}
+              </Form.Select>
+            </FloatingLabel>
+            {formInput.memberCount > 0 ? <h2>Add your name as member 1!</h2> : null}
+            {formInput.memberCount > 0 && renderInputs()}
+            <button type="submit" className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black">Lets Go!</button>
+          </Form>
+        </div>
+      </div>
+    </div>
   );
 }
 
