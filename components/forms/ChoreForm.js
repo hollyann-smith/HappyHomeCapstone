@@ -8,7 +8,7 @@ import { getMembers } from '../../api/memberData';
 
 const initialState = {
   name: '',
-  image: 'https://cdn-icons-png.freepik.com/256/2946/2946620.png',
+  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlfNhZVbu08UtTLwIPKIn3LRlZ2Geiaxo5hCoYeXwbrtYT7gh6bASBzvsvQeP-3P4QSqY&usqp=CAU',
   description: '',
   isComplete: false,
 };

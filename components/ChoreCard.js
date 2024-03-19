@@ -27,7 +27,7 @@ export default function ChoreCard({ choreObj, onUpdate }) {
     return classes.filter(Boolean).join(' ');
   }
   return (
-    <div className="w-full max-w-xs bg-white border border-gray-200 rounded-full shadow dark:bg-gray-800 dark:border-gray-700 p-6 mx-2 my-2 place-content-center">
+    <div className={classNames(choreObj.isComplete ? 'bg-stone-300 italic' : 'bg-white', 'w-full max-w-xs  border border-gray-200 rounded-full shadow  p-6 mx-2 my-2 place-content-center')}>
       <div className="flex justify-end ">
         <Menu as="div" className="relative inline-block text-left">
           <div>
@@ -85,15 +85,13 @@ export default function ChoreCard({ choreObj, onUpdate }) {
       </div>
       <div className="flex flex-col items-center pb-10">
         <img
-          className="w-24 h-24 mb-3 rounded-full shadow-lg"
+          className="w-32 h-32 w- mb-3 rounded-full shadow-lg"
           src={choreObj?.image}
           alt={choreObj?.name}
-          width={34}
-          height={34}
         />
         <h5 className="mb-1 text-xl font-medium text-gray-900 capitalize">{choreObj.name}</h5>
         <span className="text-sm text-gray-500 dark:text-gray-400">{memberObj?.name ? `Assigned to: ${memberObj?.name}` : 'Unassigned'}</span>
-        <div className="p-8">{choreObj?.description}</div>
+        <div className="p-8 first-letter:capitalize">{choreObj?.description}</div>
         <p>{choreObj.isComplete && <span>COMPLETED!<br /></span>}</p>
       </div>
     </div>
