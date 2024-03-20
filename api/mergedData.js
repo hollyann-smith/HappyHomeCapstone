@@ -20,7 +20,6 @@ const viewMemberDetails = (memberFirebaseKey) => new Promise((resolve, reject) =
 
 const deletememberchores = (memberId) => new Promise((resolve, reject) => {
   getMemberChores(memberId).then((choresArray) => {
-    // console.warn(choresArray, 'member chores');
     const deleteChorePromises = choresArray.map((chore) => deleteSingleChore(chore.firebaseKey));
 
     Promise.all(deleteChorePromises).then(() => {
