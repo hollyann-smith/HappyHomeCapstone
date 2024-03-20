@@ -8,7 +8,7 @@ import w from '../public/photos/1707-washing-dishes.gif';
 function SigninPage() {
   return (
     <div className="flex flex-wrap justify-center justify-items-center -mt-20 mx-52 max-w-xl">
-      <div className="relative bg-white border shadow-xl rounded-3xl w-full h-full dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7] max-2xl: mx-3 my-3">
+      <div className="relative bg-white border shadow-xl shadow-slate-900 rounded-3xl w-full h-full dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7] max-2xl: mx-3 my-3">
         <div className="text-7xl font-bold justify-content-center text-center mb-4">Welcome to Happy Home!</div>
         <Image
           className="rounded-3xl items-center justify center"
