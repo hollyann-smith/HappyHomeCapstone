@@ -31,9 +31,7 @@ export default function Viewmember() {
         </div>
       </div>
       <div className="d-flex flex-wrap justify-center">
-        <>
-          <ChoreTable choreArray={memberDetails.chores} />
-        </>
+        <ChoreTable choreArray={memberDetails.chores} />
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ViewChore from '../pages/chore/[firebaseKey]';
+import ViewChore from './ViewChore';
 
 export default function ChoreTable({ choreArray }) {
   const allChores = choreArray;
@@ -24,7 +24,7 @@ export default function ChoreTable({ choreArray }) {
                 <tbody key={choreObj.firebaseKey} className="divide-y divide-gray-200 ">
                   <tr>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 capitalize">{choreObj?.name}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{choreObj.description}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 first-letter:capitalize">{choreObj.description}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{choreObj?.isComplete === true ? 'DONE!' : ''}</td>
                     {/* <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                       <Link href={`/chore/${choreObj.firebaseKey}`} passHref>
@@ -48,7 +48,7 @@ export default function ChoreTable({ choreArray }) {
                   </tr>
                 </tbody>
               ),
-              allChores.sort((a, b) => a.isComplete - b.isComplete))}
+              allChores?.sort((a, b) => a.isComplete - b.isComplete))}
 
             </table>
           </div>
@@ -59,14 +59,29 @@ export default function ChoreTable({ choreArray }) {
 }
 
 ChoreTable.propTypes = {
-  choreArray: PropTypes.shape({
-    name: PropTypes.string,
-    image: PropTypes.string,
-    firebaseKey: PropTypes.string,
-    isComplete: PropTypes.bool,
-    member_id: PropTypes.string,
-    memberData: PropTypes.string,
-    description: PropTypes.string,
-  }).isRequired,
-
+  choreArray: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      image: PropTypes.string,
+      firebaseKey: PropTypes.string,
+      isComplete: PropTypes.bool,
+      member_id: PropTypes.string,
+      memberData: PropTypes.string,
+      description: PropTypes.string,
+    }),
+  ),
 };
+ChoreTable.defaultProps = {
+  choreArray: [],
+};
+// ChoreTable.propTypes = {
+//   choreArray: PropTypes.shape({
+//     name: PropTypes.string,
+//     image: PropTypes.string,
+//     firebaseKey: PropTypes.string,
+//     isComplete: PropTypes.bool,
+//     member_id: PropTypes.string,
+//     memberData: PropTypes.string,
+//     description: PropTypes.string,
+//   }),
+// };

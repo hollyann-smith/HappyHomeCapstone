@@ -33,7 +33,6 @@ export default function StartMyTeamForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.warn(e, 'e');
 
     const payload = [memberName, user.uid];
 
