@@ -77,7 +77,7 @@ export default function StartMyTeamForm() {
   };
 
   return (
-    <div className="bg-white relative items-center  px-5 py-12 mx-auto md:px-12 lg:px-20 max-w-lg rounded-3xl">
+    <div className="bg-white relative items-center  px-5 py-12 mx-auto md:px-12 lg:px-20 max-w-lg rounded-3xl border shadow-xl shadow-slate-900 mt-28">
       <div className="w-full max-w-md mx-auto md:max-w-sm md:px-0 md:w-96 sm:px-4">
         <div className="space-y-4">
           <h1 className="font-bold text-gray-600 text-center text-3xl mb-5">How many members on your team?</h1>
