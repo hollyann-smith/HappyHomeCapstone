@@ -1,16 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/router';
-import { FloatingLabel } from 'react-bootstrap';
 import { createChore, updateChore } from '../../api/choreData';
 import { useAuth } from '../../utils/context/authContext';
 import { getMembers } from '../../api/memberData';
 
 const initialState = {
   name: '',
-  image: '',
+  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlfNhZVbu08UtTLwIPKIn3LRlZ2Geiaxo5hCoYeXwbrtYT7gh6bASBzvsvQeP-3P4QSqY&usqp=CAU',
   description: '',
   isComplete: false,
 };
@@ -54,50 +52,63 @@ function ChoreForm({ obj }) {
   };
 
   return (
-    <div className="container">
-      <div className="form_area">
-        <Form onSubmit={handleSubmit}>
-          <h2 className="text-white mt-5">{obj.firebaseKey ? 'UPDATE' : 'ADD'} </h2>
+    <div className="bg-white relative items-center  px-5 py-12 mx-auto md:px-12 lg:px-20 max-w-lg rounded-3xl">
+      <div className="w-full max-w-md mx-auto md:max-w-sm md:px-0 md:w-96 sm:px-4">
+        <div className="space-y-4" onSubmit={handleSubmit}>
+          <h2 className="font-bold text-gray-600 text-center text-3xl mb-5">{obj.firebaseKey ? 'Edit' : 'Add'} Chore</h2>
           {/* FIRST NAME INPUT  */}
-          <FloatingLabel controlId="floatingInput1" label="Chore Name" className="mb-3">
-            <Form.Control
+          {/* <div className="block mb-3 text-sm font-medium text-gray-600"> What is the chore?   </div> */}
+          <div className="mt-4">
+            <label htmlFor="text" className="block text-sm font-medium text-gray-600">What is the chore?</label>
+            <input
               type="text"
+              className="block w-full px-6 py-3 text-black bg-white border border-gray-200 rounded-full appearance-none placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm capitalize"
               placeholder="Enter Chore"
               name="name"
               value={formInput.name}
               onChange={handleChange}
               required
             />
-          </FloatingLabel>
+          </div>
           {/* DESCRIPTION INPUT  */}
-          <FloatingLabel controlId="floatingInput1" label="Description" className="mb-3">
-            <Form.Control
+          <div className="mt-4">
+            <label htmlFor="image" className="block mb-0 text-sm font-medium text-gray-600">Add a description...</label>
+            <input
               type="text"
+              className="block w-full px-6 py-3 text-black bg-white border border-gray-200 rounded-full appearance-none placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
               placeholder="Enter Description"
               name="description"
               value={formInput.description}
               onChange={handleChange}
               required
             />
-          </FloatingLabel>
+          </div>
           {/* IMAGE INPUT  */}
-          <FloatingLabel controlId="floatingInput2" label="chore Image" className="mb-3">
-            <Form.Control
+          <div className="mt-4">
+            <label htmlFor="image" className="block text-sm font-medium text-gray-600">Add an image:</label>
+            <input
+              id="image"
               type="url"
+              className="block w-full px-6 py-3 mt-1 text-black bg-white border border-gray-200 rounded-full appearance-none placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
               placeholder="Enter an image url"
               name="image"
               value={formInput.image}
               onChange={handleChange}
               required
             />
-          </FloatingLabel>
+          </div>
+          {/* <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="user_avatar">Upload file</label>
+          <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file" />
+          <div className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">A profile picture is useful to confirm your are logged into your account</div> */}
+
           {/* member SELECT  */}
-          <FloatingLabel controlId="floatingSelect" label="member">
-            <Form.Select
+          <div className="mt-4">
+            <label htmlFor="member" className="block text-sm font-medium text-gray-600">Assign to:</label>
+            <select
               aria-label="member"
               name="member_id"
               onChange={handleChange}
-              className="mb-3"
+              className="block w-full px-6 py-3 text-black bg-white border border-gray-200 rounded-full appearance-none placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm "
               value={formInput.member_id}
               required
             >
@@ -113,27 +124,31 @@ function ChoreForm({ obj }) {
               </option>
             ))
           }
-            </Form.Select>
-          </FloatingLabel>
+            </select>
+          </div>
           {/* complete  */}
-          <Form.Check
-            className="text-white mb-3"
-            type="switch"
-            id="isComplete"
-            name="isComplete"
-            label="complete?"
-            checked={formInput.isComplete}
-            value={formInput.isComplete}
-            onChange={(e) => {
-              setFormInput((prevState) => ({
-                ...prevState,
-                isComplete: e.target.checked,
-              }));
-            }}
-          />
+          <div className="flex justify-end">
+            {obj.firebaseKey ? (
+              <Form.Check
+                className="text-gray-600 mb-3"
+                type="switch"
+                id="isComplete"
+                name="isComplete"
+                label="complete?"
+                checked={formInput.isComplete}
+                value={formInput.isComplete}
+                onChange={(e) => {
+                  setFormInput((prevState) => ({
+                    ...prevState,
+                    isComplete: e.target.checked,
+                  }));
+                }}
+              />
+            ) : null}
+          </div>
           {/* SUBMIT BUTTON  */}
-          <Button type="submit">{obj.firebaseKey ? 'UPDATE' : 'ADD'} </Button>
-        </Form>
+          <button type="submit" className="items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black" onClick={handleSubmit}>{obj.firebaseKey ? 'UPDATE' : 'ADD'} </button>
+        </div>
       </div>
     </div>
   );

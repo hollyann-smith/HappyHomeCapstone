@@ -4,15 +4,15 @@ import Link from 'next/link';
 
 export default function MemberCard({ memberObj }) {
   return (
-    <div className="flex justify-content-around">
-      <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-8">
-        <div className="px-6">
+    <div className="flex justify-content mx-2 my-2">
+      <div className="px-6">
+        <Link href={`/member/${memberObj?.firebaseKey}`} passHref>
+          <img alt="..." src={memberObj?.image} className="shadow-lg rounded-full mx-auto max-w-120-px max-w-40 cursor-pointer" />
+        </Link>
+        <div className="pt-6 text-center">
           <Link href={`/member/${memberObj?.firebaseKey}`} passHref>
-            <img alt="..." src={memberObj?.image} className="shadow-lg rounded-full mx-auto max-w-120-px max-w-40" />
+            <h5 className="text-xl font-bold text-blueGray-700 cursor-pointer">{memberObj?.name}</h5>
           </Link>
-          <div className="pt-6 text-center">
-            <h5 className="text-xl font-bold text-blueGray-700">{memberObj?.name}</h5>
-          </div>
         </div>
       </div>
     </div>
