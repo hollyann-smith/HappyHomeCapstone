@@ -74,14 +74,3 @@ ChoreTable.propTypes = {
 ChoreTable.defaultProps = {
   choreArray: [],
 };
-// ChoreTable.propTypes = {
-//   choreArray: PropTypes.shape({
-//     name: PropTypes.string,
-//     image: PropTypes.string,
-//     firebaseKey: PropTypes.string,
-//     isComplete: PropTypes.bool,
-//     member_id: PropTypes.string,
-//     memberData: PropTypes.string,
-//     description: PropTypes.string,
-//   }),
-// };
