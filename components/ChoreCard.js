@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Transition } from '@headlessui/react';
@@ -67,7 +68,7 @@ export default function ChoreCard({ choreObj, onUpdate }) {
                     {({ active }) => (
                       <button
                         onClick={deleteThischore}
-                        type="submit"
+                        type="button"
                         className={classNames(
                           active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                           'block w-full px-4 py-2 text-left text-sm',
