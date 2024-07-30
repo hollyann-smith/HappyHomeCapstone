@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-function Home() {
+function Index() {
   return (
     <div className="flex place-content-center mt-44">
       <div className="bg-white  border shadow-xl shadow-slate-900 relative items-center px-5 py-12 mx-auto md:px-12 lg:px-20 max-w-lg rounded-3xl space-y-6">
@@ -24,4 +24,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Index;
