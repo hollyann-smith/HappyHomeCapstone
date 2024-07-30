@@ -5,7 +5,7 @@ Happy Home -
 An app where you can create a household team and assign chores to the team members be completed. The app offers a streamlined platform to remember what needs to be done and who should do it.
 
 ## Link to project :
-https://github.com/hollyann-smith/HappyHomeCapstone
+[https://github.com/hollyann-smith/HappyHomeCapstone](https://happyhomecapstone.netlify.app/)
 
 
 ## Description of the user:
